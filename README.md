@@ -17,5 +17,5 @@ O primiero passo será construir as páginas basicas so sistema e criar as rotas
 - Estoque
 - Perfil do usuário
 
-![Desenho inicial das rotas](/rotas.png)
+<img width="400" alt="rotas" src="https://github.com/Francisco-Libanio/Gerentciador-de-produtos/assets/75691960/fe353251-1516-4d30-9e35-b6d2b47f950f">
 
