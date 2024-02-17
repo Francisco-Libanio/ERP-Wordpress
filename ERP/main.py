@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
@@ -8,9 +8,14 @@ def homepage():
     return render_template("homepage.html")
 
 
-@app.route('/perfil')
-def perfil():
-    return "Perfil do usuário"
+@app.route("/login")
+def login():
+    render_template('login.html')
+
+
+@app.route('/perfil/<usuario>')
+def perfil(usuario):
+    return render_template('Perfil.html', usuario=usuario)
 
 
 @app.route('/Cadastro-de-produtos')
