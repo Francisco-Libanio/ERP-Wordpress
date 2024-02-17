@@ -17,5 +17,5 @@ O primiero passo será construir as páginas basicas so sistema e criar as rotas
 - Estoque
 - Perfil do usuário
 
-![Desenho inicial das rotas](/templates/rotas.png)
+![Desenho inicial das rotas](/rotas.png)
 
