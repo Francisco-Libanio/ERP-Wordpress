@@ -1,9 +1,17 @@
-# API-Woocomerce
-# objetivo 
-O objetivo desse repositório é a construção de um ERP consulmindo informações de um e-commerce construido em WORDPRESS
- o primiero passo é coletar informações de estoque de produto resgistrar em um banco de dados. Inicialemente como prova de conceito
- irei utilizar SQLite.
+# Gestor de produtos
 
-1° Coletar informações dos produtos, nome do produto, código do produto, quantidadeem estoque, valor de venda, nome da plataforma e Custo de estoque.
+## Objetivo 
+O objetivo desse repositório é a construção de um gerenciador de produtos para e-comerces.
+O primiero passo será construir as páginas basicas so sistema e criar as rotas entre elas.
 
-2° cadasto das informações coletadas em um banco de dados
+## Tecnologias 
+- Flask
+
+# Páginas
+- Homepage
+- Seleção de módulos
+- Cadastro de produtos
+- Estoque
+- Perfil do usuário
+
+
