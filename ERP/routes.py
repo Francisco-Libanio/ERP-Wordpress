@@ -1,7 +1,5 @@
-from flask import Flask, render_template, url_for
-
-app = Flask(__name__)
-
+from flask import render_template, url_for
+from ERP import  app
 
 @app.route("/")
 def homepage():
@@ -31,7 +29,3 @@ def estoque():
 @app.route('/selecao-de-modulo')
 def selecao():
     return render_template('selecao-de-modulo.html')
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
