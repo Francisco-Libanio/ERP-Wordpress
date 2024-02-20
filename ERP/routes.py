@@ -2,7 +2,7 @@ from flask import render_template, url_for
 from ERP import app
 from flask_login import login_required
 from ERP.forms import FormLogin, FormCriarConta
-from ERP.models import Usuario
+from ERP.models import Usuario, Foto
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -14,6 +14,8 @@ def homepage():
 @app.route('/criarconta', methods=["GET", "POST"])
 def criarconta():
     formcriarconta = FormCriarConta()
+    if formcriarconta.validate_on_submit():
+        usuario = Usuario()
     return render_template("criarconta.html", form=formcriarconta)
 
 
