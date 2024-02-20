@@ -1,5 +1,5 @@
 from flask import render_template, url_for
-from ERP import app
+from ERP import app, database, bcrypt
 from flask_login import login_required
 from ERP.forms import FormLogin, FormCriarConta
 from ERP.models import Usuario, Foto
@@ -11,11 +11,15 @@ def homepage():
     return render_template('login.html', form=formlogin)
 
 
-@app.route('/criarconta', methods=["GET", "POST"])
+@app.route("/criarconta", methods=["GET", "POST"])
 def criarconta():
     formcriarconta = FormCriarConta()
     if formcriarconta.validate_on_submit():
-        usuario = Usuario()
+        senha = bcrypt.generate_password_hash(formcriarconta.senha.data)
+        usuario = Usuario(username=formcriarconta.username.data,
+                          senha=senha, email=formcriarconta.email.data)
+        database.session.add(usuario)
+        database.session.commit()
     return render_template("criarconta.html", form=formcriarconta)
 
 
