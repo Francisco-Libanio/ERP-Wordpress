@@ -1,16 +1,20 @@
 from flask import render_template, url_for
 from ERP import app
 from flask_login import login_required
+from ERP.forms import FormLogin, FormCriarConta
+from ERP.models import Usuario
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def homepage():
-    return render_template("homepage.html")
+    formlogin = FormLogin()
+    return render_template('login.html', form=formlogin)
 
 
-@app.route("/login")
-def login():
-    render_template('login.html')
+@app.route('/criarconta', methods=["GET", "POST"])
+def criarconta():
+    formcriarconta = FormCriarConta()
+    return render_template("criarconta.html", form=formcriarconta)
 
 
 @app.route('/perfil/<usuario>')
@@ -20,18 +24,15 @@ def perfil(usuario):
 
 
 @app.route('/Cadastro-de-produtos')
-@login_required
 def cadastro():
     return render_template("Cadastro-de-produtos.html")
 
 
 @app.route('/Estoque')
-@login_required
 def estoque():
     return render_template('Estoque.html')
 
 
 @app.route('/selecao-de-modulo')
-@login_required
 def selecao():
     return render_template('selecao-de-modulo.html')

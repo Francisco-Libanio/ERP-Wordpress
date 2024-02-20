@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Faça seu login</title>
+    <title>
+        {% block titulo %}
+        Faça seu login
+        {% endblock %}
+    </title>
 </head>
+
+{%block body%}
 <body>
+<h1>Faça login</h1>
+
+{% block formulario %}
+<form method="POST">
+    {{form.csrf_token}}
+
+        {{form.email.label()}}
+        {{form.email()}}
+
+        {{form.senha.label()}}
+        {{form.senha()}}
+
+        {{form.botao_confirmacao()}}
+
+</form>
+{% endblock %}
+
 
 </body>
+{% endblock %}
 </html>
