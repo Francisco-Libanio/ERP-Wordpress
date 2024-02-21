@@ -1,9 +1,10 @@
 from flask import render_template, url_for, redirect
 from ERP import app, database, bcrypt
-from flask_login import login_required, login_user, logout_user,current_user
-from ERP.forms import FormLogin, FormCriarConta
+from flask_login import login_required, login_user, logout_user, current_user
+from ERP.forms import FormLogin, FormCriarConta, FormFoto, FormProduto
 from ERP.models import Usuario, Foto
-
+import os
+from werkzeug.utils import secure_filename
 
 @app.route("/", methods=["GET", "POST"])
 def homepage():
@@ -31,14 +32,31 @@ def criarconta():
     return render_template("criarconta.html", form=formcriarconta)
 
 
-@app.route('/perfil/<id_usuario>')
+@app.route('/perfil/<id_usuario>', methods=["GET", "POST"])
 @login_required
 def perfil(id_usuario):
     if int(id_usuario) == int(current_user.id):
-        return render_template('Perfil.html', usuario=current_user)
-    else:# esse else permite o usuario ver o perfil de outros usuarios
+        form_foto = FormFoto()
+        form_produto = FormProduto()
+        if form_foto.validate_on_submit():
+            arquivo = form_foto.foto.data
+            nome_seguro = secure_filename(arquivo.filename)
+
+            #salvar o arquivo na pasta foto_post
+            caminho = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                                   app.config["UPLOAD_FOLDER"], nome_seguro)
+            arquivo.save(caminho)
+
+            #registrar esse arquivo no banco de dados
+            foto = Foto(imagem=nome_seguro, id_usuario=current_user.id)
+            database.session.add(foto)
+            database.session.commit()
+
+        return render_template('Perfil.html', usuario=current_user, form=form_foto, formp=form_produto)
+
+    else:  # esse else permite o usuario ver o perfil de outros usuarios
         usuario = Usuario.query.get(int(id_usuario))
-        return render_template('Perfil.html', usuario=usuario)
+        return render_template('Perfil.html', usuario=usuario, form=None, formp=None)
 
 
 @app.route('/Cadastro-de-produtos')

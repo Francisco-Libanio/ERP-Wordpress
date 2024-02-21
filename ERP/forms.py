@@ -1,6 +1,6 @@
 # Formulários do  site
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, FileField, IntegerField, FloatField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from ERP.models import Usuario
 
@@ -9,11 +9,6 @@ class FormLogin(FlaskForm):
     email = StringField("E-mail", validators=[DataRequired(), Email()])
     senha = PasswordField("Senha", validators=[(DataRequired())])
     botao_confirmacao = SubmitField("Fazer login")
-
-    def validate_email(self, email):
-        usuario = Usuario.query.filter_by(email=email.data).first()
-        if not usuario:
-            return ValidationError("Usuário inexistente, crie uma conta")
 
 
 class FormCriarConta(FlaskForm):
@@ -28,3 +23,25 @@ class FormCriarConta(FlaskForm):
         usuario = Usuario.query.filter_by(email=email.data).first()
         if usuario:
             return ValidationError("E-mail já cadastrado faça login para continuar")
+
+
+class FormFoto(FlaskForm):
+    foto = FileField("Foto", validators=[DataRequired()])
+    botao_confirmacao = SubmitField("Enviar")
+
+
+class FormProduto(FlaskForm):
+    nome = SubmitField("Nome do produto", validators=[DataRequired()])
+    preco = IntegerField("Preço de venda", validators=[DataRequired()])
+    quantidade = IntegerField("Quantida em estoque", validators=[DataRequired()])
+    marca = StringField("Marca")
+    modelo = SubmitField("Modelo")
+    codigoDeBarras = StringField("Código de barras")
+    plataformaDeVenda = StringField("Site ou loja")
+    largura = FloatField("Largura do produto (cm)")
+    altura = FloatField("Altura produto (cm)")
+    profundidade = FloatField("Profundidade do produto (cm)")
+    pesoBruto = FloatField("Peso do produto Bruto (g)")
+    pesoLiquido = FloatField("PEso do produto Liquido (g)")
+    cadastradoPor = StringField("Cadastrado por")
+    botao_confirmacao = SubmitField("Enviar")

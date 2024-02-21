@@ -5,15 +5,76 @@
     <title>Perfil do usuário</title>
 </head>
 <body>
-<ul>
-    <li>Olá {{usuario.username}}</li>
+<h1>Olá {{usuario.username}}</h1>
 
-</ul>
+<a href="{{url_for('homepage')}}"> Sair </a>
+
+
+
+{% if form %}
+
+<form method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{form.foto()}}
+    {{form.botao_confirmacao()}}
+</form>
+{% endif %}
+
+
+{% if formp %}
+<form method="post">
+    {{ formp.csrf_token }}
+
+    {{ formp.nome.label()}}
+    {{ formp.nome()}}
+
+    {{ formp.preco.label()}}
+    {{ formp.preco()}}
+
+    {{ formp.quantidade.label()}}
+    {{ formp.quantidade()}}
+
+    {{ formp.marca.label()}}
+    {{ formp.marca()}}
+
+    {{ formp.modelo.label()}}
+    {{ formp.modelo()}}
+
+    {{ formp.codigoDeBarras.label()}}
+    {{ formp.codigoDeBarras()}}
+
+    {{ formp.plataformaDeVenda.label()}}
+    {{ formp.plataformaDeVenda()}}
+
+    {{formp.largura.label()}}
+    {{formp.largura()}}
+
+    {{formp.altura.label()}}
+    {{formp.altura()}}
+
+    {{formp.profundidade.label()}}
+    {{formp.profundidade()}}
+
+    {{formp.pesoBruto.label()}}
+    {{formp.pesoBruto()}}
+
+    {{formp.pesoLiquido.label()}}
+    {{formp.pesoLiquido()}}
+
+    {{formp.cadastradoPor.label()}}
+    {{formp.cadastradoPor()}}
+
+    {{formp.botao_confirmacao()}}
+
+
+</form>
+{% endif %}
+
 {% for foto in usuario.fotos %}
-<img src="{{url_for('static', filename = fotos_posts/default.png)}} ">
-        
+<img src="{{url_for('static', filename = 'fotos_posts/{}'.format(foto.imagem))}} ">
+
 {% endfor%}
 
-<a href="{{url_for('logout')}}"> Sair </a>
+
 </body>
 </html>
