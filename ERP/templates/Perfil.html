@@ -6,12 +6,13 @@
 </head>
 <body>
 <ul>
-    <li>Nome: {{usuario}}</li>
-    <li>E-mail</li>
-    <li>Cargo</li>
-    <li>Foto de perfil</li>
-    <li>telefone</li>
+    <li>Olá {{usuario.username}}</li>
+
 </ul>
+{% for foto in usuario.fotos %}
+<img src="{{url_for('static', filename = fotos_posts/default.png)}} ">
+        
+{% endfor%}
 
 <a href="{{url_for('logout')}}"> Sair </a>
 </body>
