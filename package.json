@@ -1,0 +1,14 @@
+{
+  "name": "erp-wordpress",
+  "version": "1.0.0",
+  "description": "O objetivo desse repositório é a construção de um gerenciador de produtos para e-comerces.\r O primiero passo será construir as páginas basicas so sistema e criar as rotas entre elas.",
+  "main": "index.js",
+  "scripts": {
+    "tailwind": "npx tailwindcss -i ./static/src/style.css -o ./static/css/output.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
