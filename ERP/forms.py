@@ -31,11 +31,11 @@ class FormFoto(FlaskForm):
 
 
 class FormProduto(FlaskForm):
-    nome = SubmitField("Nome do produto", validators=[DataRequired()])
+    nome = StringField("Nome do produto", validators=[DataRequired()])
     preco = IntegerField("Preço de venda", validators=[DataRequired()])
     quantidade = IntegerField("Quantida em estoque", validators=[DataRequired()])
     marca = StringField("Marca")
-    modelo = SubmitField("Modelo")
+    modelo = StringField("Modelo")
     codigoDeBarras = StringField("Código de barras")
     plataformaDeVenda = StringField("Site ou loja")
     largura = FloatField("Largura do produto (cm)")

@@ -1,0 +1,10 @@
+<nav>
+    <div class="logo">Logotipo</div>
+    <ul>
+      <li><a href="{{url_for('Estoque')}}">Estoque</a></li>
+      <li><a href="{{url_for('cadastro')}}">Cadastrar</a></li>
+      <li><a href="{{ url_for('perfil', id_usuario=current_user.id) }}">Perfil</a></li>
+      <li><a href="{{url_for('logout')}}">Sair</a></li>
+
+    </ul>
+  </nav>

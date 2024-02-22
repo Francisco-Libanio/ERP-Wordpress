@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect
 from ERP import app, database, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from ERP.forms import FormLogin, FormCriarConta, FormFoto, FormProduto
-from ERP.models import Usuario, Foto
+from ERP.models import Usuario, Foto, Produto
 import os
 from werkzeug.utils import secure_filename
 
@@ -52,6 +52,26 @@ def perfil(id_usuario):
             database.session.add(foto)
             database.session.commit()
 
+        if form_produto.validate_on_submit():
+            produto = Produto(
+                nome=form_produto.nome.data,
+                preco=form_produto.preco.data,
+                quantidade=form_produto.quantidade.data,
+                marca=form_produto.marca.data,
+                modelo=form_produto.modelo.data,
+                codigoDeBarras=form_produto.codigoDeBarras.data,
+                plataformaDeVenda=form_produto.plataformaDeVenda.data,
+                largura=form_produto.largura.data,
+                altura=form_produto.altura.data,
+                profundidade=form_produto.profundidade.data,
+                pesoBruto=form_produto.pesoBruto.data,
+                pesoLiquido=form_produto.pesoLiquido.data,
+                cadastradoPor=form_produto.cadastradoPor.data
+            )
+            # Adicione o produto ao banco de dados
+            database.session.add(produto)
+            database.session.commit()
+
         return render_template('Perfil.html', usuario=current_user, form=form_foto, formp=form_produto)
 
     else:  # esse else permite o usuario ver o perfil de outros usuarios
@@ -59,14 +79,41 @@ def perfil(id_usuario):
         return render_template('Perfil.html', usuario=usuario, form=None, formp=None)
 
 
-@app.route('/Cadastro-de-produtos')
+@app.route('/Cadastro-de-produtos', methods=["GET", "POST"])
 def cadastro():
-    return render_template("Cadastro-de-produtos.html")
+    form_produto = FormProduto()
+
+    if form_produto.validate_on_submit():
+        produto = Produto(
+            nome=form_produto.nome.data,
+            preco=form_produto.preco.data,
+            quantidade=form_produto.quantidade.data,
+            marca=form_produto.marca.data,
+            modelo=form_produto.modelo.data,
+            codigoDeBarras=form_produto.codigoDeBarras.data,
+            plataformaDeVenda=form_produto.plataformaDeVenda.data,
+            largura=form_produto.largura.data,
+            altura=form_produto.altura.data,
+            profundidade=form_produto.profundidade.data,
+            pesoBruto=form_produto.pesoBruto.data,
+            pesoLiquido=form_produto.pesoLiquido.data,
+            cadastradoPor=form_produto.cadastradoPor.data
+        )
+        # Adicione o produto ao banco de dados
+        database.session.add(produto)
+        database.session.commit()
+        # Redirecione para evitar que o formulário seja enviado novamente ao atualizar a página
+        return redirect(url_for('cadastro'))
+
+    return render_template('Cadastro-de-produtos.html', formp=form_produto)
+
 
 
 @app.route('/Estoque')
-def estoque():
-    return render_template('Estoque.html')
+@login_required
+def Estoque():
+    produtos = Produto.query.order_by(Produto.dataDeCadastro.desc()).all() #para limitar basta colocar [:100]
+    return render_template('Estoque.html', produtos=produtos)
 
 
 @app.route('/selecao-de-modulo')
@@ -75,6 +122,7 @@ def selecao():
 
 
 @app.route("/logout")
+@login_required
 def logout():
     logout_user()
     return redirect(url_for("homepage"))

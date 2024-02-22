@@ -5,7 +5,43 @@
     <title>Estoque</title>
 </head>
 <body>
-<li><a href="/">Sair</a></li>
-<li><a href=" url_for{{'/' }}">Perfil</a></li>
+{%include "navbar.html"%}
+
+<table border="1">
+  <tr>
+    <th>Nome</th>
+    <th>Preço</th>
+    <th>Quantidade</th>
+    <th>Marca</th>
+    <th>Modelo</th>
+    <th>Código de Barras</th>
+    <th>Plataforma de Venda</th>
+    <th>Largura</th>
+    <th>Altura</th>
+    <th>Profundidade</th>
+    <th>Peso Bruto</th>
+    <th>Peso Líquido</th>
+    <th>Cadastrado Por</th>
+  </tr>
+  {% for produto in produtos %}
+  <tr>
+    <td>{{ produto.nome }}</td>
+    <td>{{ produto.preco }}</td>
+    <td>{{ produto.quantidade }}</td>
+    <td>{{ produto.marca }}</td>
+    <td>{{ produto.modelo }}</td>
+    <td>{{ produto.codigoDeBarras }}</td>
+    <td>{{ produto.plataformaDeVenda }}</td>
+    <td>{{ produto.largura }}</td>
+    <td>{{ produto.altura }}</td>
+    <td>{{ produto.profundidade }}</td>
+    <td>{{ produto.pesoBruto }}</td>
+    <td>{{ produto.pesoLiquido }}</td>
+    <td>{{ produto.cadastradoPor }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
 </body>
 </html>

@@ -5,6 +5,56 @@
     <title>Cadastro de produtos</title>
 </head>
 <body>
-<a href="/Estoque">Estoque</a>
+{%include "navbar.html"%}
+
+{% if formp %}
+<form method="post">
+    {{ formp.csrf_token }}
+
+    {{ formp.nome.label()}}
+    {{ formp.nome()}}
+
+    {{ formp.preco.label()}}
+    {{ formp.preco()}}
+
+    {{ formp.quantidade.label()}}
+    {{ formp.quantidade()}}
+
+    {{ formp.marca.label()}}
+    {{ formp.marca()}}
+
+    {{ formp.modelo.label()}}
+    {{ formp.modelo()}}
+
+    {{ formp.codigoDeBarras.label()}}
+    {{ formp.codigoDeBarras()}}
+
+    {{ formp.plataformaDeVenda.label()}}
+    {{ formp.plataformaDeVenda()}}
+
+    {{formp.largura.label()}}
+    {{formp.largura()}}
+
+    {{formp.altura.label()}}
+    {{formp.altura()}}
+
+    {{formp.profundidade.label()}}
+    {{formp.profundidade()}}
+
+    {{formp.pesoBruto.label()}}
+    {{formp.pesoBruto()}}
+
+    {{formp.pesoLiquido.label()}}
+    {{formp.pesoLiquido()}}
+
+    {{formp.cadastradoPor.label()}}
+    {{formp.cadastradoPor()}}
+
+    {{formp.botao_confirmacao()}}
+
+
+</form>
+{% endif %}
+
 </body>
 </html>
