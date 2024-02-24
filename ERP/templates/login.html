@@ -1,42 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <link rel="stylesheet" href="../static/css/output.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='/css/output.css')}}">
+
     <meta charset="UTF-8">
     <title>
         {% block titulo %}
         Faça seu login
         {% endblock %}
     </title>
+</head>
+
+{%block body%}
+<body>
+<nav class="bg-white border-gray-200">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+        <a href="{{url_for('homepage')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="./static//fotos_site/logo.png" class="h-11" alt="Logo"/>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap ">Gerenciador de produtos</span>
+        </a>
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+            <a href="9-9999-8888" class="text-sm  text-gray-500 hover:underline">(11)3333-33333</a>
+            <a href="{{url_for('homepage')}}" class="text-sm  text-blue-600  hover:underline">Login</a>
+        </div>
+    </div>
+</nav>
+<nav class="bg-green-600 ">
+    <div class="max-w-screen-xl px-4 py-3 mx-auto">
+        <div class="flex items-center">
+            <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+                <li>
+                    <a href="{{ url_for('perfil', id_usuario=current_user.id) }}" class="text-gray-900 hover:underline"
+                       aria-current="page">Perfil</a>
+                </li>
+                <li>
+                    <a href="{{url_for('Estoque')}}" class="text-gray-900  hover:underline">Estoque</a>
+                </li>
+                <li>
+                    <a href="{{url_for('cadastro')}}" class="text-gray-900  hover:underline">Cadastro de produtos</a>
+                </li>
+                <li>
+                    <a href="{{url_for('logout')}}" class="text-gray-900  hover:underline">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 
-    {%block body%}
-<body style="margin: 0; font-family: Arial, sans-serif;">
-<header style="background-color: #00FF7F; padding: 20px 0;">
-
-</header>
-
-
-<main style="position: relative;">
-    <div class="background"
-         style="background-image: url('background-image.jpg'); background-size: cover; background-position: center; height: 400px; display: flex; justify-content: center; align-items: center;">
-        <h1 style="color: white; text-align: center; font-size: 36px;">Gerencie seu estoque e otimize suas vendas</h1>
+<main>
+    <div>
+        <h1>Gerencie seu estoque e otimize suas vendas</h1>
         <h1>Faça login</h1>
 
         {% block formulario %}
-        <form method="POST">
-            {{form.csrf_token}}
+        <form class="max-w-sm mx-auto" method="POST">
+            <div class="mb-5">
+                {{form.csrf_token}}
+                <div class="mb-5">
+                    <label for="email"
+                           class="block mb-2 text-sm font-medium text-gray-900">{{form.email.label()}}</label>
+                    <input id="email"
+                           {{form.email(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                           )}}>
+                </div>
+                <div class="mb-5">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">
+                        {{form.senha.label()}}</label>
+                    <input id="password"
+                           {{form.senha(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                           )}}>
+                </div>
 
-            {{form.email.label()}}
-            {{form.email()}}
-
-            {{form.senha.label()}}
-            {{form.senha()}}
-
-            {{form.botao_confirmacao()}}
-
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">
+                    {{form.botao_confirmacao()}}
+                </button>
+            </div>
         </form>
+
+        <a href="{{url_for('criarconta')}}">Ainda não tem uma conta clique aqui para criar </a>
+
         {% endblock %}
+
 
     </div>
 </main>
