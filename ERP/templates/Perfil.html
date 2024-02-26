@@ -9,7 +9,7 @@
     <nav class="bg-white border-gray-200">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
             <a href="{{url_for('homepage')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="./static//fotos_site/logo.png" class="h-11" alt="Logo"/>
+                <img src="./ERP/static/fotos_site/logo.png" class="h-11" alt="Logo"/>
                 <span class="self-center text-2xl font-semibold whitespace-nowrap ">Gerenciador de produtos</span>
             </a>
             <div class="flex items-center space-x-6 rtl:space-x-reverse">
@@ -41,26 +41,23 @@
     </nav>
 
 
-
-    <h1>Olá {{usuario.username}}</h1>
-
+<h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">Olá <span class="underline underline-offset-3 decoration-8 decoration-green-600 ">{{usuario.username}}</span></h1>
 
 
-<div class="grid grid-cols-2 gap-2">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="">
+        <div class=" min-h-screen content-center justify-center grid grid-cols-2 gap-2 ">
+            <div>
+                <img class="h-auto w-1/2 ml-auto rounded-lg " src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="">
+            </div>
+            <div>
+                <img class="h-auto w-1/2 rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
+            </div>
+            <div>
+                <img class="h-auto w-1/2 ml-auto rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
+            </div>
+            <div>
+                <img class="h-auto w-1/2 rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
+            </div>
         </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
-        </div>
-    </div>
-
 
 
     <a href="{{url_for('homepage')}}"> Sair </a>
