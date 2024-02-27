@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Perfil do usuário</title>
     <link rel="stylesheet" href="{{url_for('static',filename='/css/output.css')}}">
+    <script src="https://kit.fontawesome.com/3277339033.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="bg-white border-gray-200">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
             <a href="{{url_for('homepage')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="./ERP/static/fotos_site/logo.png" class="h-11" alt="Logo"/>
+                <img src="../static/fotos_site/logo.png" class="h-11" alt="Logo"/>
                 <span class="self-center text-2xl font-semibold whitespace-nowrap ">Gerenciador de produtos</span>
             </a>
             <div class="flex items-center space-x-6 rtl:space-x-reverse">
@@ -40,27 +41,35 @@
         </div>
     </nav>
 
-
-<h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">Olá <span class="underline underline-offset-3 decoration-8 decoration-green-600 ">{{usuario.username}}</span></h1>
-
-
+<div class="flex justify-between ">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">Olá <span class="underline underline-offset-3 decoration-8 decoration-green-600 ">{{usuario.username}}</span></h1>
+    <h2 class=" p-6 " ><a href="{{url_for('homepage')}}"> Sair </a></h2>
+</div>
         <div class=" min-h-screen content-center justify-center grid grid-cols-2 gap-2 ">
             <div>
-                <img class="h-auto w-1/2 ml-auto rounded-lg " src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="">
+                <a href="{{url_for('Estoque')}}">
+                    <img class="h-auto w-1/2 ml-auto rounded-lg " src="../static/fotos_site/estoque.png" alt="">
+                </a>
             </div>
             <div>
-                <img class="h-auto w-1/2 rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
+                <a href="">
+                    <img class="h-auto w-1/2 rounded-lg" src="../static/fotos_site/pessoa.png" alt="">
+                </a>
             </div>
             <div>
-                <img class="h-auto w-1/2 ml-auto rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
+                <a href="{{url_for('cadastro')}}">
+                    <img class="h-auto w-1/2 ml-auto rounded-lg" src="../static/fotos_site/produto.png" alt="">
+                </a>
             </div>
             <div>
-                <img class="h-auto w-1/2 rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
+                <a href="">
+                    <img class="h-auto w-1/2 rounded-lg" src="../static/fotos_site/loja.png" alt="">
+                </a>
             </div>
         </div>
 
 
-    <a href="{{url_for('homepage')}}"> Sair </a>
+
 
 
 </body>
