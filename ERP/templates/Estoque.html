@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
   <link rel="stylesheet" href="{{url_for('static',filename='/css/output.css')}}">
+  <script src="https://kit.fontawesome.com/3277339033.js" crossorigin="anonymous"></script>
     <title>Estoque</title>
 </head>
-<body>
+<body class="h-screen flex flex-col">
+<div class ="flex-1">
 <nav class="bg-white border-gray-200">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
             <a href="{{url_for('homepage')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -40,55 +42,60 @@
         </div>
     </nav>
 
-<div class = "container">
-    <div class = "container mx-auto px-5 px-3 mt-5 bg-blue-500">
-        <p class = " font-bold text-green-500">olá mundo!</p>
-    </div>
 
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3">Nome</th>
+            <th scope="col" class="px-6 py-3">Preço</th>
+            <th scope="col" class="px-6 py-3">Quantidade</th>
+            <th scope="col" class="px-6 py-3">Marca</th>
+            <th scope="col" class="px-6 py-3">Modelo</th>
+            <th scope="col" class="px-6 py-3">>Código de Barras</th>
+            <th scope="col" class="px-6 py-3">Plataforma de Venda</th>
+            <th scope="col" class="px-6 py-3">Largura</th>
+            <th scope="col" class="px-6 py-3">Altura</th>
+            <th scope="col" class="px-6 py-3">Profundidade</th>
+            <th scope="col" class="px-6 py-3">Peso Bruto</th>
+            <th scope="col" class="px-6 py-3">Peso Líquido</th>
+            <th scope="col" class="px-6 py-3">Cadastrado Por</th>
+            <th scope="col" class="px-6 py-3"> <span class="sr-only">Edit</span> </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produto in produtos %}
+          <tr class="bg-white border-b ">
+
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">{{ produto.nome }}</th>
+            <td class="px-6 py-4">{{ produto.preco }}</td>
+            <td class="px-6 py-4">{{ produto.quantidade }}</td>
+            <td class="px-6 py-4">{{ produto.marca }}</td>
+            <td class="px-6 py-4">{{ produto.modelo }}</td>
+            <td class="px-6 py-4">{{ produto.codigoDeBarras }}</td>
+            <td class="px-6 py-4">{{ produto.plataformaDeVenda }}</td>
+            <td class="px-6 py-4">{{ produto.largura }}</td>
+            <td class="px-6 py-4">{{ produto.altura }}</td>
+            <td class="px-6 py-4">{{ produto.profundidade }}</td>
+            <td class="px-6 py-4">{{ produto.pesoBruto }}</td>
+            <td class="px-6 py-4">{{ produto.pesoLiquido }}</td>
+            <td class="px-6 py-4">{{ produto.cadastradoPor }}</td>
+            <td class="px-6 py-4 text-right">
+                <a href="#" class="font-medium text-blue-600 hover:underline">Editar</a>
+            </td>
+          </tr>
+        </tbody>
+      {% endfor %}
+    </table>
 </div>
-
-<table border="1">
-  <tr>
-    <th>Nome</th>
-    <th>Preço</th>
-    <th>Quantidade</th>
-    <th>Marca</th>
-    <th>Modelo</th>
-    <th>Código de Barras</th>
-    <th>Plataforma de Venda</th>
-    <th>Largura</th>
-    <th>Altura</th>
-    <th>Profundidade</th>
-    <th>Peso Bruto</th>
-    <th>Peso Líquido</th>
-    <th>Cadastrado Por</th>
-  </tr>
-  {% for produto in produtos %}
-  <tr>
-    <td>{{ produto.nome }}</td>
-    <td>{{ produto.preco }}</td>
-    <td>{{ produto.quantidade }}</td>
-    <td>{{ produto.marca }}</td>
-    <td>{{ produto.modelo }}</td>
-    <td>{{ produto.codigoDeBarras }}</td>
-    <td>{{ produto.plataformaDeVenda }}</td>
-    <td>{{ produto.largura }}</td>
-    <td>{{ produto.altura }}</td>
-    <td>{{ produto.profundidade }}</td>
-    <td>{{ produto.pesoBruto }}</td>
-    <td>{{ produto.pesoLiquido }}</td>
-    <td>{{ produto.cadastradoPor }}</td>
-  </tr>
-  {% endfor %}
-</table>
-
-<footer class="bg-green-300 text-white py-4">
+</div>
+<footer class="bg-green-300 text-white py-4 ">
     <div class=" container mx-auto flex justify-center items-center">
         <!-- Redes Sociais -->
-        <div class="flex space-x-4">
-            <a href="https://www.linkedin.com/in/francisco-libanio-nascimento/" class="text-slate-50 hover:text-slate-50"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Francisco-Libanio" class="text-slate-50 hover:text-gray-200"><i class="fab fa-github"></i></a>
-            <a href="https://medium.com/@libanio.dev" class="text-slate-50 hover:text-gray-200"><i class="fab fa-medium"></i></a>
+        <div class="flex space-x-4 h-3/4 ">
+            <a href="https://www.linkedin.com/in/francisco-libanio-nascimento/" class="text-gray-950 hover:text-gray-950 "><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Francisco-Libanio" class="text-gray-950 hover:text-gray-200"><i class="fab fa-github"></i></a>
+            <a href="https://medium.com/@libanio.dev" class="text-gray-950 hover:text-gray-200"><i class="fab fa-medium"></i></a>
         </div>
         <!-- Logo -->
         <div class="text-center ">
@@ -96,7 +103,7 @@
         </div>
         <!-- Aviso -->
         <div>
-            <p class="text-slate-50 text-sm">Aviso: Esta é uma sistema de teste</p>
+            <p class="text-gray-950 text-sm">Aviso: Esta é uma sistema de teste</p>
         </div>
     </div>
 </footer>
