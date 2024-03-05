@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{url_for('static',filename='/css/output.css')}}">
+    <script src="https://kit.fontawesome.com/3277339033.js" crossorigin="anonymous"></script>
     <title>Cadastro de produtos</title>
 </head>
-<body>
-<nav class="bg-white border-gray-200">
+<body class="h-screen flex flex-col">
+<div class="flex-1">
+    <nav class="bg-white border-gray-200">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
             <a href="{{url_for('homepage')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../static/fotos_site/logo.png" class="h-11" alt="Logo"/>
@@ -23,14 +25,16 @@
             <div class="flex items-center">
                 <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
                     <li>
-                        <a href="{{ url_for('perfil', id_usuario=current_user.id) }}" class="text-slate-50 hover:underline"
+                        <a href="{{ url_for('perfil', id_usuario=current_user.id) }}"
+                           class="text-slate-50 hover:underline"
                            aria-current="page">Perfil</a>
                     </li>
                     <li>
                         <a href="{{url_for('Estoque')}}" class="text-slate-50  hover:underline">Estoque</a>
                     </li>
                     <li>
-                        <a href="{{url_for('cadastro')}}" class="text-slate-50  hover:underline">Cadastro de produtos</a>
+                        <a href="{{url_for('cadastro')}}" class="text-slate-50  hover:underline">Cadastro de
+                            produtos</a>
                     </li>
                     <li>
                         <a href="{{url_for('logout')}}" class="text-slate-50  hover:underline">Sair</a>
@@ -41,61 +45,81 @@
     </nav>
 
 
-{% if formp %}
-<form method="post">
-    {{ formp.csrf_token }}
+    {% if formp %}
+    <form class="max-w-sm mx-auto" method="POST">
+        <div class="mb-5 grid grid-cols-4 gap-4 ">
+            {{ formp.csrf_token }}
 
-    {{ formp.nome.label()}}
-    {{ formp.nome()}}
+            <div class="mb-5 col-span-4">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{ formp.nome.label()}}</label>
+                <input id="Nome" {{formp.nome(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
 
-    {{ formp.preco.label()}}
-    {{ formp.preco()}}
-
-    {{ formp.quantidade.label()}}
-    {{ formp.quantidade()}}
-
-    {{ formp.marca.label()}}
-    {{ formp.marca()}}
-
-    {{ formp.modelo.label()}}
-    {{ formp.modelo()}}
-
-    {{ formp.codigoDeBarras.label()}}
-    {{ formp.codigoDeBarras()}}
-
-    {{ formp.plataformaDeVenda.label()}}
-    {{ formp.plataformaDeVenda()}}
-
-    {{formp.largura.label()}}
-    {{formp.largura()}}
-
-    {{formp.altura.label()}}
-    {{formp.altura()}}
-
-    {{formp.profundidade.label()}}
-    {{formp.profundidade()}}
-
-    {{formp.pesoBruto.label()}}
-    {{formp.pesoBruto()}}
-
-    {{formp.pesoLiquido.label()}}
-    {{formp.pesoLiquido()}}
-
-    {{formp.cadastradoPor.label()}}
-    {{formp.cadastradoPor()}}
-
-    {{formp.botao_confirmacao()}}
-
-
-</form>
-{% endif %}
+            </div>
+             <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{ formp.preco.label()}}</label>
+                <input id="Preco" {{formp.preco( class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+             </div>
+             <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{ formp.quantidade.label()}}</label>
+                <input id="Quantidade" {{ formp.quantidade(class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{ formp.marca.label()}}</label>
+                <input id="Marca" {{ formp.marca( class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{ formp.modelo.label()}}</label>
+                <input id="Modelo"{{ formp.modelo(class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-2">
+                 <label class="block mb-2 text-sm font-medium text-gray-900">{{ formp.codigoDeBarras.label()}}</label>
+                 <input id="Código de Barras"{{ formp.codigoDeBarras(class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{ formp.plataformaDeVenda.label()}}</label>
+                <input id="Plataforma de venda"{{ formp.plataformaDeVenda(class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-1">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{formp.largura.label()}}</label>
+                <input id="Largura"{{formp.largura(class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-1">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{formp.altura.label()}}</label>
+                <input id="Altura"{{formp.altura(class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{formp.profundidade.label()}}</label>
+                <input id="Profundidade"{{formp.profundidade(class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{formp.pesoBruto.label()}}</label>
+                <input id="Peso Bruto"{{formp.pesoBruto( class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{formp.pesoLiquido.label()}}</label>
+                <input id="Peso Liquido"{{formp.pesoLiquido( class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <div class="mb-5 col-span-4">
+                <label class="block mb-2 text-sm font-medium text-gray-900">{{formp.cadastradoPor.label()}}</label>
+                <input id="Cadastrado por: "{{formp.cadastradoPor( class ="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
+            </div>
+            <button class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">
+                {{formp.botao_confirmacao()}}
+            </button>
+        </div>
+    </form>
+    {% endif %}
+</div>
 <footer class="bg-green-300 text-white py-4">
     <div class=" container mx-auto flex justify-center items-center">
         <!-- Redes Sociais -->
         <div class="flex space-x-4">
-            <a href="https://www.linkedin.com/in/francisco-libanio-nascimento/" class="text-slate-50 hover:text-slate-50"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Francisco-Libanio" class="text-slate-50 hover:text-gray-200"><i class="fab fa-github"></i></a>
-            <a href="https://medium.com/@libanio.dev" class="text-slate-50 hover:text-gray-200"><i class="fab fa-medium"></i></a>
+            <a href="https://www.linkedin.com/in/francisco-libanio-nascimento/"
+               class="text-gray-950 hover:text-slate-50"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Francisco-Libanio" class="text-gray-950 hover:text-gray-200"><i
+                    class="fab fa-github"></i></a>
+            <a href="https://medium.com/@libanio.dev" class="text-gray-950 hover:text-gray-200"><i
+                    class="fab fa-medium"></i></a>
         </div>
         <!-- Logo -->
         <div class="text-center ">
@@ -103,9 +127,10 @@
         </div>
         <!-- Aviso -->
         <div>
-            <p class="text-slate-50 text-sm">Aviso: Esta é uma sistema de teste</p>
+            <p class="text-gray-950 text-sm">Aviso: Esta é uma sistema de teste</p>
         </div>
     </div>
 </footer>
+
 </body>
 </html>
