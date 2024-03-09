@@ -80,6 +80,7 @@ def perfil(id_usuario):
 
 
 @app.route('/Cadastro-de-produtos', methods=["GET", "POST"])
+@login_required
 def cadastro():
     form_produto = FormProduto()
 
@@ -117,12 +118,13 @@ def Estoque():
 
 
 @app.route('/selecao-de-modulo')
+@login_required
 def selecao():
     return render_template('selecao-de-modulo.html')
 
 
 @app.route("/logout")
-@login_required
+
 def logout():
     logout_user()
     return redirect(url_for("homepage"))
