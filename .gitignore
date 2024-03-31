@@ -15,6 +15,8 @@ tailwind.config.js
 .DS_Store *Thumbs.db
 instance
 criar_banco.py
+ERP/__pycache__/forms.cpython-310.pyc
+ERP/__pycache__/routes.cpython-310.pyc
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm,python,flask,visualstudio,venv,dotenv,linux,windows,database,powershell
