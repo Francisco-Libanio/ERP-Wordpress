@@ -52,19 +52,39 @@
 
         <div class="mb-5 col-span-4">
             <label class="block mb-2 text-sm font-medium text-gray-900">{{form.email.label()}}</label>>
+            {% if form.email.errors%}
+                {% for erro in form.email.errors %}
+                    <p style = "color: red">{{erro}}</p>
+                {% endfor %}
+            {% endif %}
             <input id="email" {{form.email(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
         </div>
 
         <div class="mb-5 col-span-4">
             <label class="block mb-2 text-sm font-medium text-gray-900">{{form.username.label()}}</label>
+                        {% if form.username.errors%}
+                {% for erro in form.username.errors %}
+                    <p style = "color: red">{{erro}}</p>
+                {% endfor %}
+            {% endif %}
             <input id="username" {{form.username(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
         </div>
         <div class="mb-5 col-span-4">
             <label class="block mb-2 text-sm font-medium text-gray-900">{{form.senha.label()}}</label>
+                        {% if form.senha.errors%}
+                {% for erro in form.senha.errors %}
+                    <p style = "color: red">{{erro}}</p>
+                {% endfor %}
+            {% endif %}
             <input id="senha"{{form.senha(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
         </div>
         <div class="mb-5 col-span-4">
             <label class="block mb-2 text-sm font-medium text-gray-900">{{form.confirmacao_senha.label()}}</label>
+                        {% if form.confirmacao_senha.errors%}
+                {% for erro in form.confirmacao_senha.errors %}
+                    <p style = "color: red">{{erro}}</p>
+                {% endfor %}
+            {% endif %}
             <input id="confirmacao_senha"{{form.confirmacao_senha(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5")}}>
         </div>
         <button class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  w-auto sm:w-auto text-center ">

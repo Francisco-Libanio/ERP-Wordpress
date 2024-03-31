@@ -61,6 +61,11 @@
                 {{form.csrf_token}}
                 <div class="mb-5">
                     <label class="block mb-2 text-sm font-medium text-gray-900">{{form.email.label()}}</label>
+                    {% if form.email.errors%}
+                        {% for erro in form.email.errors %}
+                            <p style = "color: red">{{erro}}</p>
+                        {% endfor %}
+                    {% endif %}
                     <input id="email"
                            {{form.email(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                            ) }}>
@@ -68,6 +73,11 @@
                 <div class="mb-5">
                     <label class="block mb-2 text-sm font-medium text-gray-900 ">
                         {{form.senha.label()}}</label>
+                      {% if form.senha.errors%}
+                {% for erro in form.senha.errors %}
+                    <p style = "color: red">{{erro}}</p>
+                {% endfor %}
+            {% endif %}
                     <input id="password"
                            {{form.senha(class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                            )}}>
